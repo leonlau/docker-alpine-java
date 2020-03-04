@@ -18,6 +18,7 @@ RUN set -ex && \
     apk -U upgrade && \
     apk add libstdc++ curl ca-certificates bash java-cacerts tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime       && \
+    echo "Asia/Shanghai" > /etc/timezone && \
     for pkg in glibc-${GLIBC_VERSION} glibc-bin-${GLIBC_VERSION} glibc-i18n-${GLIBC_VERSION}; do curl -sSL ${GLIBC_REPO}/releases/download/${GLIBC_VERSION}/${pkg}.apk -o /tmp/${pkg}.apk; done && \
     apk add --allow-untrusted /tmp/*.apk && \
     rm -v /tmp/*.apk && \
